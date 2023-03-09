@@ -1,10 +1,8 @@
 // интерфейсы
 
-
 abstract class Dishes {
   void put();
   void fill();
-  
 }
 
 abstract class WiedthTable {
@@ -53,7 +51,6 @@ class Table implements WiedthTable, Dishes {
 
   Table(this.weidth);
 
-
   @override
   void put() {
     print("puted on Table");
@@ -71,6 +68,53 @@ class Table implements WiedthTable, Dishes {
 переменые как у предка или методы.
 */
 
+class Car {
+  String carName;
+
+  Car(this.carName);
+
+  void move() {
+    print("The $carName has started");
+  }
+}
+
+class Train {
+  int speed;
+
+  Train(this.speed);
+
+  void speedMove() {
+    print("The Train has started with $speed");
+  }
+}
+
+class Vehicle implements Car, Train {
+  @override
+  String carName; // Реализация свойста carName из Car
+  @override
+  int speed; // реализация свойства speed из Train
+
+  Vehicle({required this.carName, required this.speed});
+
+  @override
+  void move() {
+    print("The $carName has started");
+  }
+
+  @override
+  void speedMove() {
+    print("Has started with $speed");
+  }
+
+  @override
+  String toString() {
+    return "$carName $speed km/h";
+  }
+}
+
 void main() {
-  Cup cup = Cup(14.4);
+  Vehicle vehicle = Vehicle(carName: "BMW", speed: 100);
+  print(vehicle);
+  vehicle.move();
+  vehicle.speedMove();
 }

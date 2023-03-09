@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:math';
 
 enum Color {
@@ -73,14 +74,59 @@ class Square extends Shape {
   }
 }
 
-void main() {
-  Rectangle rectangle = Rectangle(Color.Green, 3, 5, 8);
-  Circle circle = Circle(Color.Red, 50);
-  Square square = Square(Color.Blue, 10);
+class Vehclie {
+  String color;
 
-  List<Shape> items = [rectangle, circle, square];
-  for (int i = 0; i < items.length; i++) {
-    print(items[i]);
-    print(items[i].square);
+  Vehclie({required this.color});
+
+  void start() {
+    print("Транспорт в движении.");
   }
+}
+
+class Car extends Vehclie {
+  String carName;
+
+  Car({required String color, required this.carName}) : super(color: color);
+
+  void open() {
+    print("Двери автомобиля открыты");
+  }
+
+  @override
+  void start() {
+    print("Автомобиль в движении.");
+  }
+
+  @override
+  String toString() {
+    return "$color: $carName";
+  }
+}
+
+class Moto extends Vehclie {
+  String typeMoto;
+
+  Moto({required String color, required this.typeMoto}) : super(color: color);
+
+  void roll() {
+    print("Roll");
+  }
+
+  @override
+  void start() {
+    print("Мотоцикл в движении");
+  }
+
+  @override
+  String toString() {
+    return "$color: $typeMoto";
+  }
+}
+
+void main() {
+  Car car = Car(color: "Green", carName: "Toyota");
+  print(car);
+  Moto moto = Moto(color: "Yeelow", typeMoto: "SpotBike");
+  print(moto);
 }

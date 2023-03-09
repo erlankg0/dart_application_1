@@ -1,5 +1,92 @@
 import 'dart:math';
 
+import 'extends.dart';
+
+class Car {
+  late String _make;
+  late String _model;
+  late int _year;
+  late String _color;
+  static final wheels = 4;
+
+  Car({
+    required String make,
+    required String model,
+    required int year,
+    required String color,
+  }) {
+    _make = make;
+    _model = model;
+    _year = year;
+    _color = color;
+  }
+
+  bool _checkName(String value) {
+    if (value.length < 3) {
+      return false;
+    } else if (value == "Erlan") {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  bool _checkYear(int value) {
+    if (value > 1930) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  String get make => _make;
+  set make(String value) {
+    if (_checkName(value)) {
+      _make = value;
+    } else {
+      throw FormatException("Ошибка в название марки($value)");
+    }
+  }
+  
+  String get model => _model;
+  set model(String value) {
+    if (_checkName(value)) {
+      _model = value;
+    } else {
+      throw FormatException("Ошибка в название модели($value)");
+    }
+  }
+
+  int get year => _year;
+  set year(int value) {
+    if (_checkYear(value)) {
+      _year = value;
+    } else {
+      throw FormatException("Ошибка в годе $value");
+    }
+  }
+
+  String get color => _color;
+  set color(String value) => _color = value;
+
+  void start() {
+    print('Starting the engine...');
+  }
+
+  void stop() {
+    print('Stopping the engine...');
+  }
+
+  void drive() {
+    print('Driving...');
+  }
+
+  @override
+  String toString() {
+    return '$_make-$_model: $_color, $_year';
+  }
+}
+
 class Square {
   final int _side;
   int get length => _side;
@@ -74,13 +161,11 @@ class Employer {
   String toString() {
     return "Name $name: Surname $surName Lastname: $lastName Passport№ $passportNo";
   }
-
-  
 }
 
 void main() {
-  Random random = Random();
-  Square square = Square(random.nextInt(500));
-  print(square.square);
-  print(square);
+  Car car = Car(make: "BMW", model: "e46", year: 2023, color: "RED");
+  print(car);
+  car.make = "o";
+  print(car);
 }
